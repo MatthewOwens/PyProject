@@ -1,0 +1,2 @@
+# PyProject
+Small PyGame project
