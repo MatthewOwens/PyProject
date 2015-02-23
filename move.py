@@ -13,9 +13,9 @@ class baseMove:
     Type = NORMAL
     Power = 0
     accuracy = 0
-    bonusAttack = 0
-    bonusDefense = 0
-    bonusAccuracy = 0
+    bonusAttack = 1
+    bonusDefense = 1
+    bonusAccuracy = 1
 
 
 #       DEBUFFS       #
@@ -24,13 +24,13 @@ class baseMove:
 class debuffGrowl(baseMove):
     Name = "Growl"
     Type = DEBUFF
-    bonusAttack = 10
+    bonusAttack = 0.9
 
 #Tail whip
 class debuffTailWhip(baseMove):
     Name = "Tail Whip"
     Type = DEBUFF
-    bonusDefense = 10
+    bonusDefense = 0.9
 
 #       ATTACKS       #
 
