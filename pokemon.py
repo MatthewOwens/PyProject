@@ -9,14 +9,17 @@ WATER = 4
 
 class Pokemon:
 	name = "NULL"
+    health = 0
 	elemType = 1	# Defaulting to normal type #
 	attack = 0
 	defence = 0
-	accMod = 0		# Modifier for the accuracy	#
+	accMod = 1		# Modifier for the accuracy	, Base accuracy multiplier accmod >1 is increase and < 1 is a decrease#
 	moves = []		# Array for the moves #
+    timesDebuffed = 0   #used to limit amount of times pokemon can have stats reduced
 	
-	def __init__(name_, elemType_, attack_, defence_, accMod_, moveNames_):
-		name = name_
+	def __init__(name_, health_, elemType_, attack_, defence_, accMod_, moveNames_):
+		health = health_
+        name = name_
 		elemType = elemType_
 		attack = attack_
 		defence = defence_
