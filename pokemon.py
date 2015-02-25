@@ -10,11 +10,13 @@ WATER = 4
 
 class Pokemon:
 	name = 'NULL'
-	elemType = 1	# Defaulting to normal type #
+	health = 0
+	elemType = 1		# Defaulting to normal type #
 	attack = 0
 	defence = 0
-	accMod = 0		# Modifier for the accuracy	#
-	moves = []		# Array for the moves #
+	accMod = 1			# Base accuracy modifier. >1 is increased accuracy while <1 is decreased #
+	moves = []			# Array for the moves #
+	timesDebuffed = 0	# Used to limit the amount of stat reductions #
 	
 	def __init__(name_, elemType_, attack_, defence_, accMod_, moveNames_):
 		name = name_
@@ -30,8 +32,8 @@ class Pokemon:
 		elif j == 'Ember': moves[i] = attackEmber()
 		elif j == 'Tackle': moves[i] = attackScratch()
 		elif j == 'RazorLeaf': moves[i] = attackRazorLeaf()
-		elif j == 'Water Gun': moves[i] = attackWaterGun()
-		#else print('Something went wrong, move name not recognised!')
+		elif j == 'WaterGun': moves[i] = attackWaterGun()
+		else: print('Something went wrong, move name not recognised!')
 
 	def printInfo():
 		print(name)
