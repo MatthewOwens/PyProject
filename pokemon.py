@@ -1,5 +1,6 @@
 # Pokemon class containing ATK, DEF, ACC stats; the name and type of the pokemon
 import move
+from move import *
 
 # Possible types #
 NORMAL = 1
@@ -8,7 +9,7 @@ GRASS = 3
 WATER = 4
 
 class Pokemon:
-	name = "NULL"
+	name = 'NULL'
 	elemType = 1	# Defaulting to normal type #
 	attack = 0
 	defence = 0
@@ -23,11 +24,17 @@ class Pokemon:
 		accMod = accMod_
 
 		[(i, j) for i, j in enumerate(moveNames_)]
-		if j == "Growl": moves[i] = debuffGrowl()
-		elif j == "Tail Whip": moves[i] = debuffTailWhip()
-		elif j == "Scratch": moves[i] = attackScratch()
-		elif j == "Ember": moves[i] = attackEmber()
-		elif j == "Tackle": moves[i] = attackScratch()
-		elif j == "Razor Leaf": moves[i] = attackRazorLeaf()
-		elif j == "Water Gun": moves[i] = attackWaterGun()
-		#else print("Something went wrong, move name not recognised!")
+		if j == 'Growl': moves[i] = debuffGrowl()
+		elif j == 'Tail Whip': moves[i] = debuffTailWhip()
+		elif j == 'Scratch': moves[i] = attackScratch()
+		elif j == 'Ember': moves[i] = attackEmber()
+		elif j == 'Tackle': moves[i] = attackScratch()
+		elif j == 'RazorLeaf': moves[i] = attackRazorLeaf()
+		elif j == 'Water Gun': moves[i] = attackWaterGun()
+		#else print('Something went wrong, move name not recognised!')
+
+	def printInfo():
+		print(name)
+		print(attack)
+		print(defence)
+		print(accMod)
