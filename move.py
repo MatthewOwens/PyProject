@@ -1,7 +1,7 @@
 #Base Move class, containing name, type, power, accuracy
 
 DEBUFF = -1
-BUFF = 0
+#BUFF = 0
 NORMAL = 1
 FIRE = 2
 GRASS = 3
