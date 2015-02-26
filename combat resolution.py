@@ -6,19 +6,19 @@ class resolveAttack:
     def calculateDamage( attackMove, attackingPokemon, defendingPokemon)
         attackAccuracy = attackMove.Accuracy * attackingPokemon.accMod #total accuracy of attack > 1 is a guaranteed hit 
         
-        if attackMove.Type == NORMAL #No bonus
+        if attackMove.Type == NORMAL: #No bonus
             attkMod = 1
-        elif attackMove.Type == FIRE && defendingPokemon.elemType == GRASS #positive type mods
+        elif attackMove.Type == FIRE && defendingPokemon.elemType == GRASS: #positive type mods
             attkMod = 1.5
-        elif attackMove.Type == GRASS && defendingPokemon.elemType == WATER
+        elif attackMove.Type == GRASS && defendingPokemon.elemType == WATER:
             attkMod = 1.5
-        elif attackMove.Type == WATER && defendingPokemon.elemType == FIRE
+        elif attackMove.Type == WATER && defendingPokemon.elemType == FIRE:
             attkMod = 1.5
-        elif attackMove.Type == FIRE && defendingPokemon.elemType == WATER #negative type mods
+        elif attackMove.Type == FIRE && defendingPokemon.elemType == WATER: #negative type mods
             attkMod = 0.5
-        elif attackMove.Type == WATER && defendingPokemon.elemType == GRASS
+        elif attackMove.Type == WATER && defendingPokemon.elemType == GRASS:
             attkMod = 0.5
-        elif attackMove.Type == GRASS && defendingPokemon.elemType == FIRE
+        elif attackMove.Type == GRASS && defendingPokemon.elemType == FIRE:
             attkMod = 0.5
             
         #determining crits
@@ -35,7 +35,7 @@ class resolveAttack:
     
     def applyDebuff( debuffMove, defendingPokemon)
         
-        if defendingPokemon.timesDebuffed < 6
+        if defendingPokemon.timesDebuffed < 6:
             defendingPokemon.timesDebuffed = defendingPokemon.timesDebuffed + 1
             defendingPokemon.attack * attackMove.bonusAttack
             defendingPokemon.defense * attackMove.bonusDefense
