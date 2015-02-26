@@ -1,19 +1,25 @@
 # Quick and dirty clone of the pokemon battle system
 
-import pokemon, sys, pygame, interface
-from interface import ProgressBar
+import sys, pygame
 from graphics_routines import *
+from pokemon import *
 from pygame.locals import *
 
 # Globals #
 FPS = 30
 WINDOWWIDTH = 640
 WINDOWHEIGHT = 480
+player_turn = True
+current_move_index = 0
 
-bar = ProgressBar(100, 75, True)
+bulbasaurMoves = ['Tackle', 'Growl', 'Razor Leaf']
+bulbasaur = Pokemon('Bulbasaur', 20, GRASS, 5, 5, bulbasaurMoves)
+
+squirtleMoves = ['Scratch', 'Tail Whip', 'Water Gun']
+squirtle = Pokemon('Squirtle', 20, WATER, 5, 5, squirtleMoves)
 
 # Setting the background colour #
-BGCOLOR = interface.WHITE
+BGCOLOR = kColourWhite
 
 def main():
 	init_graphics()
@@ -25,7 +31,6 @@ def runGame():
 	while True:
 		#game_over = game_update()
 		game_update()
-		bar.update()
 		game_render()
 		#if game_over == True:
 		#	return
@@ -34,9 +39,8 @@ def game_init():
 	return
 
 def game_update():
-	bulbasaurMoves = ['Tackle', 'Growl', 'Razor Leaf']
-	#bulbasaur = pokemon.Pokemon('bulbasaur', 15, pokemon.GRASS, 5, 5, bulbasaurMoves)
-	
+	global current_move_index
+
 	# Handling events #
 	for event in pygame.event.get():
 		if event.type == QUIT:				# Quit by OS #
@@ -44,8 +48,11 @@ def game_update():
 		elif event.type == KEYDOWN:
 			if (event.key == K_ESCAPE):		# Quit by player #
 				terminate()
-			elif (event.key == K_z):
-				bulbasaur.print_info()
+			if player_turn == True:
+				if event.key == K_UP:
+					if current_move_index > 0: current_move_index -= 1
+				if event.key == K_DOWN:
+					if current_move_index < 3: current_move_index += 1
 	return False
 
 def game_render():
@@ -54,7 +61,7 @@ def game_render():
 	# mix and match rendering routines from graphics_routines module to render the scene based on current game state.
 	# this model is inspired by the immediate gui pattern.
 	
-	drawTest()
+	drawTest(bulbasaur, squirtle, current_move_index)
 	render_end()
 
 def terminate():
