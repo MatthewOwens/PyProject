@@ -9,7 +9,7 @@ FIRE = 2
 GRASS = 3
 WATER = 4
 
-class Pokemon:
+class Pokemon(object):
         name = 'NULL'
         health = 0
         elemType = 1		# Defaulting to normal type #

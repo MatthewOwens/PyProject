@@ -17,10 +17,10 @@ def typeString(Type):
 	else: return "???"
 
 # Base class for all moves. Using this as a move should deal no damage and give no effects
-class baseMove:
+class baseMove(object):
     Name = " "
     #Type = NORMAL
-    Type = -2
+    Type = 999
     Power = 0
     accuracy = 0
     bonusAttack = 1
