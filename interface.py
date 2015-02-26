@@ -52,7 +52,7 @@ class Button:
 			return True
 		else: return False
 
-	def draw(SURFACE, FONT):
-		pygame.draw.rect(SURFACE, BLACK, rect, 5)
-		textSurf =  FONT.render(text, True, BLACK)
-		SURFACE.blit(textSurf, SURFACE)
+	def draw(self, SURFACE, FONT):
+		pygame.draw.rect(SURFACE, BLACK, self.rect, 5)
+		textSurf =  FONT.render(self.text, True, BLACK)
+		SURFACE.blit(textSurf, self.rect)
