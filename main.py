@@ -1,22 +1,18 @@
 # Quick and dirty clone of the pokemon battle system
 
-import pokemon, sys, pygame
+import pokemon, sys, pygame, interface
+from interface import ProgressBar
 from pygame.locals import *
 
 # Globals #
 FPS = 30
 WINDOWWIDTH = 640
 WINDOWHEIGHT = 480
-TICKER = 0
 
-# Colours #
-#				R    G    B
-WHITE		= (255, 255, 255)
-BLUE 		= (015, 140, 246)
-GREEN		= (022, 170, 012)
-YELLOW		= (255, 167, 000)
-RED			= (252, 002, 000)
-BGCOLOR = WHITE
+bar = ProgressBar(100, 75, True)
+
+# Setting the background colour #
+BGCOLOR = interface.WHITE
 
 def main():
 	init()
@@ -35,20 +31,20 @@ def init():
 def runGame():
 	game_init()
 	while True:
-		game_over = game_update()
+		#game_over = game_update()
+		bar.update()
 		game_render()
-		if game_over == True:
-			return
+		#if game_over == True:
+		#	return
 
 def game_init():
-	global TICKER
-	TICKER = 1
+	return
 
 def game_update():
-	global TICKER
 	
 	bulbasaurMoves = ['Tackle', 'Growl', 'Razor Leaf']
 	bulbasaur = pokemon.Pokemon('bulbasaur', 15, pokemon.GRASS, 5, 5, bulbasaurMoves)
+	
 	# Handling events #
 	for event in pygame.event.get():
 		if event.type == QUIT:				# Quit by OS #
@@ -58,17 +54,15 @@ def game_update():
 				terminate()
 			elif (event.key == K_z):
 				bulbasaur.print_info()
-	
-	TICKER = TICKER + 1
-	#print(TICKER)
 
-	if TICKER > 29:
+	if bulbasaur.health < 1:
 		return True
 	else:
 		return False
 
 def game_render():
 	DISPLAYSURF.fill(BGCOLOR)
+	bar.draw(DISPLAYSURF, 50, 50, 100)
 	pygame.display.update()
 	FPSCLOCK.tick(FPS)
 
