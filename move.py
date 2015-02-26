@@ -26,6 +26,8 @@ class baseMove:
     bonusAttack = 1
     bonusDefense = 1
     bonusAccuracy = 1
+    currentPP = 0
+    maxPP = 0
 
 #       DEBUFFS       #
 
@@ -34,12 +36,15 @@ class debuffGrowl(baseMove):
     Name = "Growl"
     Type = DEBUFF
     bonusAttack = 0.9
+    currentPP = maxPP = 25
 
 #Tail whip
 class debuffTailWhip(baseMove):
     Name = "Tail Whip"
     Type = DEBUFF
     bonusDefense = 0.9
+    currentPP = maxPP = 25
+
 
 #       ATTACKS       #
 
@@ -49,6 +54,8 @@ class attackScratch(baseMove):
     Type = NORMAL
     Power = 40
     accuracy = 100
+    currentPP = maxPP = 25
+
 
 #Ember
 class attackEmber(baseMove):
@@ -56,6 +63,8 @@ class attackEmber(baseMove):
     Type = FIRE
     Power = 40
     accuracy = 100
+    currentPP = maxPP = 10
+
 
 #Tackle
 class attackTackle(baseMove):
@@ -63,6 +72,7 @@ class attackTackle(baseMove):
     Type = NORMAL
     Power = 50
     accuracy = 100
+    currentPP = maxPP = 10
 
 #Razor Leaf
 class attackRazorLeaf(baseMove):
@@ -70,6 +80,7 @@ class attackRazorLeaf(baseMove):
     Type = GRASS
     Power = 55
     Accuracy = 95
+    currentPP = maxPP = 10
 
 #Water Gun
 class attackWaterGun(baseMove):
@@ -77,6 +88,7 @@ class attackWaterGun(baseMove):
     Type = WATER
     Power = 40
     Accuracy = 100
+    currentPP = maxPP = 10
 
 
 

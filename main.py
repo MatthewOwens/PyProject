@@ -12,6 +12,7 @@ FPS = 30
 WINDOWWIDTH = 640
 WINDOWHEIGHT = 480
 player_turn = True
+msgbox_needs_refresh = True
 current_move_index = 0
 
 bulbasaurMoves = ['Tackle', 'Growl', 'Razor Leaf']
@@ -73,10 +74,11 @@ def game_render():
 	# mix and match rendering routines from graphics_routines module to render the scene based on current game state.
 	# this model is inspired by the immediate gui pattern.
 	drawPokemonSprites()
-	drawMoveMenu(current_move_index, bulbasaur.move_list(), bulbasaur.move_types())
+	if player_turn == True:
+		drawMoveMenu(current_move_index, bulbasaur.moves)
 	drawPokeStats((200, 85), bulbasaur.name, 5, bulbasaur.health, bulbasaur.max_health, bulbasaur.exp, 100)
 	drawPokeStats((30, 5), squirtle.name, 5, squirtle.health, squirtle.max_health, squirtle.exp, 100)
-	currentGameState.render()
+#	currentGameState.render()
 	
 	render_end()
 
