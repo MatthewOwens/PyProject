@@ -2,6 +2,7 @@
 
 import pokemon, sys, pygame, interface
 from interface import ProgressBar
+from graphics_routines import *
 from pygame.locals import *
 
 # Globals #
@@ -15,23 +16,15 @@ bar = ProgressBar(100, 75, True)
 BGCOLOR = interface.WHITE
 
 def main():
-	init()
+	init_graphics()
 	while True:
 		runGame()
-
-def init():
-	global FPSCLOCK, DISPLAYSURF, BASICFONT
-
-	pygame.init()
-	FPSCLOCK = pygame.time.Clock()
-	DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-	BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
-	pygame.display.set_caption('Pokemon')
 
 def runGame():
 	game_init()
 	while True:
 		#game_over = game_update()
+		game_update()
 		bar.update()
 		game_render()
 		#if game_over == True:
@@ -41,9 +34,8 @@ def game_init():
 	return
 
 def game_update():
-	
 	bulbasaurMoves = ['Tackle', 'Growl', 'Razor Leaf']
-	bulbasaur = pokemon.Pokemon('bulbasaur', 15, pokemon.GRASS, 5, 5, bulbasaurMoves)
+	#bulbasaur = pokemon.Pokemon('bulbasaur', 15, pokemon.GRASS, 5, 5, bulbasaurMoves)
 	
 	# Handling events #
 	for event in pygame.event.get():
@@ -54,17 +46,16 @@ def game_update():
 				terminate()
 			elif (event.key == K_z):
 				bulbasaur.print_info()
-
-	if bulbasaur.health < 1:
-		return True
-	else:
-		return False
+	return False
 
 def game_render():
-	DISPLAYSURF.fill(BGCOLOR)
-	bar.draw(DISPLAYSURF, 50, 50, 100)
-	pygame.display.update()
-	FPSCLOCK.tick(FPS)
+	render_begin()
+	
+	# mix and match rendering routines from graphics_routines module to render the scene based on current game state.
+	# this model is inspired by the immediate gui pattern.
+	
+	drawTest()
+	render_end()
 
 def terminate():
 	pygame.quit()
