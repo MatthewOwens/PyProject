@@ -78,15 +78,14 @@ def drawMoveMenu(SelectedIndex, MovesList):
 		else:
 			drawText("-", (145, 170 + index * 16))
 	
-def drawPokemonSprites(Pokemon1, Pokemon2, current_move_index):
+def drawPokemonSprites():
 	pygame.draw.rect(DisplaySurface, kColourBlack, [5, 86, 150, 77], 0) # pokemon 1 sprite
 	pygame.draw.rect(DisplaySurface, kColourBlack, [168, 5, 150, 77], 0) # pokemon 2 sprite
 	#drawMessageBox("Bulbasaur hits Squirtle for 5 damage!", "It's super effective", "Zomg 3 lines text")
 	#drawMessageBox("", "", "")
 	#drawActionBox(1, 0)
 	#drawPokeStats((200, 85), "Squirtle", 5, 20, 20, 0, 100)
-	drawPokeStats((200, 85), Pokemon1.name, 5, Pokemon1.health, Pokemon1.max_health, Pokemon1.exp, 100)
+#	drawPokeStats((200, 85), Pokemon1.name, 5, Pokemon1.health, Pokemon1.max_health, Pokemon1.exp, 100)
 	#drawPokeStats((30, 5), "Bulbasaur", 5, 20, 20, 10, 100)
-	drawPokeStats((30, 5), Pokemon2.name, 5, Pokemon2.health, Pokemon2.max_health, Pokemon2.exp, 100)
-	drawMoveMenu(current_move_index, [])
+#	drawPokeStats((30, 5), Pokemon2.name, 5, Pokemon2.health, Pokemon2.max_health, Pokemon2.exp, 100)
 	

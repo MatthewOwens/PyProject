@@ -73,11 +73,11 @@ def game_render():
 	# mix and match rendering routines from graphics_routines module to render the scene based on current game state.
 	# this model is inspired by the immediate gui pattern.
 	drawPokemonSprites()
-	drawPokeStats((200, 85), "Squirtle", 5, 20, 20, 0, 100)
-	drawPokeStats((30, 5), "Bulbasaur", 5, 20, 20, 10, 100)
+	drawMoveMenu(current_move_index, bulbasaur.move_list())
+	drawPokeStats((200, 85), bulbasaur.name, 5, bulbasaur.health, bulbasaur.max_health, bulbasaur.exp, 100)
+	drawPokeStats((30, 5), squirtle.name, 5, squirtle.health, squirtle.max_health, squirtle.exp, 100)
 	currentGameState.render()
 	
-	drawPokeStats(bulbasaur, squirtle, current_move_index)
 	render_end()
 
 def terminate():

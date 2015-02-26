@@ -40,6 +40,12 @@ class Pokemon:
                 elif move == 'Water Gun': self.moves[index] = attackWaterGun()
                 else: print('Something went wrong, move name not recognised!')
 
+        def move_list(self):
+			move_names = ["","","",""]
+			for index, move in enumerate(self.moves):
+				move_names[index] = move.Name
+			return move_names
+
         def print_info(self):
             print(self.name)
             print(self.attack)

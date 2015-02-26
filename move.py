@@ -9,13 +9,20 @@ WATER = 4
 
 # Base class for all moves. Using this as a move should deal no damage and give no effects
 class baseMove:
-    Name = "NULL"
+    Name = " "
     Type = NORMAL
     Power = 0
     accuracy = 0
     bonusAttack = 1
     bonusDefense = 1
     bonusAccuracy = 1
+
+    def typeString():
+		if Type == 1: return "NORMAL"
+		elif Type == 2: return "FIRE"
+		elif Type == 3: return "GRASS"
+		elif Type == 4: return "WATER"
+		else: return "???"
 
 
 #       DEBUFFS       #
