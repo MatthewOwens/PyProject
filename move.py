@@ -51,7 +51,7 @@ class attackEmber(baseMove):
 #Tackle
 class attackTackle(baseMove):
     Name = "Tackle"
-    Type = DEBUFF
+    Type = NORMAL
     Power = 50
     accuracy = 100
 

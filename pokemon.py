@@ -18,25 +18,26 @@ class Pokemon:
 	moves = []			# Array for the moves #
 	timesDebuffed = 0	# Used to limit the amount of stat reductions #
 	
-	def __init__(name_, elemType_, attack_, defence_, accMod_, moveNames_):
-		name = name_
-		elemType = elemType_
-		attack = attack_
-		defence = defence_
-		accMod = accMod_
+	def __init__(self, name_, health_, elemType_, attack_, defence_, moveNames_):
+		self.health = health_	# No idea why python was complaining about indentation here #
+		self.name = name_
+		self.elemType = elemType_
+		self.attack = attack_
+		self.defence = defence_
 
 		[(i, j) for i, j in enumerate(moveNames_)]
-		if j == 'Growl': moves[i] = debuffGrowl()
-		elif j == 'Tail Whip': moves[i] = debuffTailWhip()
-		elif j == 'Scratch': moves[i] = attackScratch()
-		elif j == 'Ember': moves[i] = attackEmber()
-		elif j == 'Tackle': moves[i] = attackScratch()
-		elif j == 'RazorLeaf': moves[i] = attackRazorLeaf()
-		elif j == 'WaterGun': moves[i] = attackWaterGun()
+		print(i, j)
+		if j == 'Growl': self.moves[i] = debuffGrowl()
+		elif j == 'Tail Whip': self.moves[i] = debuffTailWhip()
+		elif j == 'Scratch': self.moves[i] = attackScratch()
+		elif j == 'Ember': self.moves[i] = attackEmber()
+		elif j == 'Tackle': self.moves[i] = attackTackle()
+		elif j == 'Razor Leaf': self.moves[i] = attackRazorLeaf()
+		elif j == 'Water Gun': self.moves[i] = attackWaterGun()
 		else: print('Something went wrong, move name not recognised!')
 
-	def printInfo():
-		print(name)
-		print(attack)
-		print(defence)
-		print(accMod)
+	def print_info(self):
+		print(self.name)
+		print(self.attack)
+		print(self.defence)
+		print(self.accMod)
