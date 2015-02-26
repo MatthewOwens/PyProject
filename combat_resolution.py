@@ -30,7 +30,6 @@ def calculateDamage( attackMove, attackingPokemon, defendingPokemon):
     if attackAccuracy >= random.random():
         Mod = random.uniform( 0.85, 1 ) * attkMod * critMod #Random variance, type mod and crit
         val = math.floor( ( ( 0.1 ) * ( attackingPokemon.attack / defendingPokemon.defence ) * attackMove.Power ) * Mod ) #Based on the damage formula from the game 
-        print("Attacking with " + attackMove.Name)
         if val == 0: return 1
         else: return val
     else:
