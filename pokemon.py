@@ -46,6 +46,12 @@ class Pokemon:
 				move_names[index] = move.Name
 			return move_names
 
+        def move_types(self):
+			move_types = ["","","",""]
+			for index in range(0,4):
+				move_types[index] = typeString(self.moves[index].Type)
+			return move_types
+
         def print_info(self):
             print(self.name)
             print(self.attack)

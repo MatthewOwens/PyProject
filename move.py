@@ -7,23 +7,25 @@ FIRE = 2
 GRASS = 3
 WATER = 4
 
+def typeString(Type):
+	if Type == 1: return "NORMAL"
+	elif Type == 2: return "FIRE"
+	elif Type == 3: return "GRASS"
+	elif Type == 4: return "WATER"
+	elif Type == 0: return "NORMAL"
+	elif Type == -1: return "NORMAL"
+	else: return "???"
+
 # Base class for all moves. Using this as a move should deal no damage and give no effects
 class baseMove:
     Name = " "
-    Type = NORMAL
+    #Type = NORMAL
+    Type = -2
     Power = 0
     accuracy = 0
     bonusAttack = 1
     bonusDefense = 1
     bonusAccuracy = 1
-
-    def typeString():
-		if Type == 1: return "NORMAL"
-		elif Type == 2: return "FIRE"
-		elif Type == 3: return "GRASS"
-		elif Type == 4: return "WATER"
-		else: return "???"
-
 
 #       DEBUFFS       #
 

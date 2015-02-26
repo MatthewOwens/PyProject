@@ -64,11 +64,12 @@ def drawMessageBox(Line1, Line2, Line3):
 	drawText(Line2, (5, 195))
 	drawText(Line3, (5, 215))
 	
-def drawMoveMenu(SelectedIndex, MovesList):
+def drawMoveMenu(SelectedIndex, MovesList, MoveTypes):
 	pygame.draw.rect(DisplaySurface, kColourWhite, [15, 114, 150, 50], 0) # white bg for text
 	pygame.draw.rect(DisplaySurface, kColourGray, [15, 114, 150, 50], 1) # box
 	drawText("TYPE /", (20, 125))
-	drawText("NORMAL", (20, 145))
+	#drawText("NORMAL", (20, 145))
+	drawText(MoveTypes[SelectedIndex], (20, 145))
 	drawText("35 / 35", (100, 145))
 	pygame.draw.rect(DisplaySurface, kColourBlack, [130, 164, 190, 75], 1) # moves box
 	pygame.draw.rect(DisplaySurface, kColourBlack, [135, 175 + 16 * SelectedIndex, 10, 5], 0) # action cursor
