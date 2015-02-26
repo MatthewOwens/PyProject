@@ -8,6 +8,7 @@ GREEN		= (022, 170, 012)
 YELLOW		= (255, 167, 000)
 RED			= (252, 002, 000)
 WHITE		= (255, 255, 255)
+BLACK		= (000, 000, 000)
 
 class ProgressBar:
 	max_value = 0
@@ -34,3 +35,24 @@ class ProgressBar:
 		pygame.draw.line(SURFACE, self.colour, (start_x, start_y), (end_x, start_y), 10)
 		print("startX: ", start_x)
 		print("endX:   ", end_x)
+
+class Button:
+	text = ""
+	rect = pygame.Rect(0,0,0,0)
+	
+	def __init__(self, text, x, y, width, height):
+		self.text = text
+		self.rect.left = x
+		self.rect.top = y
+		self.rect.width = width
+		self.rect.height = height
+
+	def update(self, mouseX, mouseY):	# Update method, called on mouseclick #
+		if mouseX > self.rect.left & mouseX < self.rect.left + self.rect.width & mouseY > self.rect.top & mouseY < self.rect.top + self.rect.width:
+			return True
+		else: return False
+
+	def draw(SURFACE, FONT):
+		pygame.draw.rect(SURFACE, BLACK, rect, 5)
+		textSurf =  FONT.render(text, True, BLACK)
+		SURFACE.blit(textSurf, SURFACE)
