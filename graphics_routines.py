@@ -72,18 +72,13 @@ def drawMoveMenu(SelectedIndex, MovesList):
 	drawText("35 / 35", (100, 145))
 	pygame.draw.rect(DisplaySurface, kColourBlack, [130, 164, 190, 75], 1) # moves box
 	pygame.draw.rect(DisplaySurface, kColourBlack, [135, 175 + 16 * SelectedIndex, 10, 5], 0) # action cursor
-	drawText("TACKLE", (145, 170))
-	drawText("TAIL WHIP", (145, 186))
-	drawText("-", (145, 202))
-	drawText("-", (145, 218))
+	for index in range(0, 4):
+		if (index < len(MovesList)):
+			drawText(MovesList[index], (145, 170 + index * 16))
+		else:
+			drawText("-", (145, 170 + index * 16))
 	
-def drawTest():
+def drawPokemonSprites():
 	pygame.draw.rect(DisplaySurface, kColourBlack, [5, 86, 150, 77], 0) # pokemon 1 sprite
 	pygame.draw.rect(DisplaySurface, kColourBlack, [168, 5, 150, 77], 0) # pokemon 2 sprite
-	#drawMessageBox("Bulbasaur hits Squirtle for 5 damage!", "It's super effective", "Zomg 3 lines text")
-	drawMessageBox("", "", "")
-	#drawActionBox(1, 0)
-	drawPokeStats((200, 85), "Squirtle", 5, 20, 20, 0, 100)
-	drawPokeStats((30, 5), "Bulbasaur", 5, 20, 20, 10, 100)
-	drawMoveMenu(0, [])
 	
