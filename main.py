@@ -4,6 +4,8 @@ import sys, pygame
 from graphics_routines import *
 from pokemon import *
 from pygame.locals import *
+from state_manager import *
+from action_selection_state import *
 
 # Globals #
 FPS = 30
@@ -17,6 +19,8 @@ bulbasaur = Pokemon('Bulbasaur', 20, GRASS, 5, 5, bulbasaurMoves)
 
 squirtleMoves = ['Scratch', 'Tail Whip', 'Water Gun']
 squirtle = Pokemon('Squirtle', 20, WATER, 5, 5, squirtleMoves)
+
+change_state(ActionSelectionState())
 
 # Setting the background colour #
 BGCOLOR = kColourWhite
@@ -41,6 +45,9 @@ def game_init():
 def game_update():
 	global current_move_index
 
+	currentGameState = get_state()
+	
+
 	# Handling events #
 	for event in pygame.event.get():
 		if event.type == QUIT:				# Quit by OS #
@@ -53,15 +60,24 @@ def game_update():
 					if current_move_index > 0: current_move_index -= 1
 				if event.key == K_DOWN:
 					if current_move_index < 3: current_move_index += 1
+			else:
+				currentGameState.handle_key_down(event.key)
+				
 	return False
 
 def game_render():
 	render_begin()
 	
+	currentGameState = get_state()
+	
 	# mix and match rendering routines from graphics_routines module to render the scene based on current game state.
 	# this model is inspired by the immediate gui pattern.
+	drawPokemonSprites()
+	drawPokeStats((200, 85), "Squirtle", 5, 20, 20, 0, 100)
+	drawPokeStats((30, 5), "Bulbasaur", 5, 20, 20, 10, 100)
+	currentGameState.render()
 	
-	drawTest(bulbasaur, squirtle, current_move_index)
+	drawPokeStats(bulbasaur, squirtle, current_move_index)
 	render_end()
 
 def terminate():
