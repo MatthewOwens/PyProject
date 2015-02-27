@@ -85,6 +85,7 @@ def attack(attacker, defender, move_index):
 
 	if defender.health <= 0:
 		defender.health = 0
+		attacker.exp += 20
 		if defender.name == 'Squirtle': current_state = States.win
 		elif defender.name == 'Bulbasaur': current_state = States.lose
 	else:
@@ -93,7 +94,6 @@ def attack(attacker, defender, move_index):
 
 def reset():
 	global current_state, bulbasaur, squirtle
-	#bulbasaur = Pokemon('Bulbasaur', 20, GRASS, 5, 5, ['Tackle', 'Growl', 'Razor Leaf', 'Tail Whip'])
 	squirtle = Pokemon('Squirtle', 20, WATER, 5, 5, ['Scratch', 'Tail Whip', 'Water Gun', 'Growl'])
 	bulbasaur = Pokemon('Bulbasaur', 20, GRASS, 5, 5, ['Tackle', 'Growl', 'Razor Leaf', 'Tail Whip'])
 	current_state = States.move_select
@@ -107,13 +107,15 @@ def game_render():
 
 	if current_state != States.start:
 		# Drawing the interface items that will be there regardless of state #
-		drawPokemonSprites()
+	#	drawPokemonSprites()
+		drawSquirtle()
 		drawPokeStats((200, 85), bulbasaur.name, 5, bulbasaur.health, bulbasaur.max_health, bulbasaur.exp, 100)
 		drawPokeStats((30, 5), squirtle.name, 5, squirtle.health, squirtle.max_health, squirtle.exp, 100)
 	else: drawText("Press any key to begin!", (kScreenWidth / 2 - 85, kScreenHeight / 2))
 
 	if current_state == States.move_select:
 		drawMoveMenu(move_index, bulbasaur.moves)
+		drawBulbasaur()
 	elif current_state == States.player_move or current_state == States.enemy_move:
 		drawMessageBox(msgbox_text, "", "")
 	elif current_state == States.win:

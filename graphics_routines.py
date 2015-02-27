@@ -15,6 +15,9 @@ BackgroundColour = kColourWhite
 
 kTargetFPS = 15
 
+squirtle_sprite = pygame.image.load("sprites/squirtle.png")
+bulbasaur_sprite = pygame.image.load("sprites/bulbasaur.png")
+
 def init_graphics():
     global FPSCLOCK, DisplaySurface, DefaultFont
 
@@ -82,6 +85,11 @@ def drawMoveMenu(SelectedIndex, MovesList):
 			drawText("-", (145, 170 + index * 16))
 	
 def drawPokemonSprites():
-	pygame.draw.rect(DisplaySurface, kColourBlack, [5, 86, 150, 77], 0) # pokemon 1 sprite
-	pygame.draw.rect(DisplaySurface, kColourBlack, [168, 5, 150, 77], 0) # pokemon 2 sprite
-	
+	DisplaySurface.blit(bulbasaur_sprite, (10, 170))
+	DisplaySurface.blit(squirtle_sprite, (215, 5))
+
+def drawBulbasaur():
+	DisplaySurface.blit(bulbasaur_sprite, (10, 170))
+
+def drawSquirtle():
+	DisplaySurface.blit(squirtle_sprite, (215, 5))
