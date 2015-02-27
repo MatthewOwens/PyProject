@@ -18,22 +18,9 @@ action_index = 0
 current_state = States.start
 msgbox_text = ""
 
-#bulbasaurMoves = ['Tackle', 'Growl', 'Razor Leaf', 'Tail Whip']
-#bulbasaur = Pokemon('Bulbasaur', 20, GRASS, 5, 5, bulbasaurMoves)
-bulbasaur = Pokemon('Bulbasaur', 20, GRASS, 5, 5, ['Tackle', 'Growl', 'Razor Leaf', 'Tail Whip'])
-
-#squirtleMoves = ['Scratch', 'Tail Whip', 'Water Gun']
+#bulbasaur = Pokemon('Bulbasaur', 20, GRASS, 5, 5, ['Tackle', 'Growl', 'Razor Leaf', 'Tail Whip'])
 squirtle = Pokemon('Squirtle', 20, WATER, 5, 5, ['Scratch', 'Tail Whip', 'Water Gun', 'Growl'])
 bulbasaur = Pokemon('Bulbasaur', 20, GRASS, 5, 5, ['Tackle', 'Growl', 'Razor Leaf', 'Tail Whip'])
-
-#change_state(ActionSelectionState())
-for index in range (0,4):
-	print(bulbasaur.moves[index].Name)
-
-print("----------")
-
-for index in range(0,4):
-	print(squirtle.moves[index].Name)
 
 # Setting the background colour #
 BGCOLOR = kColourWhite
@@ -44,13 +31,9 @@ def main():
 		runGame()
 
 def runGame():
-	game_init()
 	while True:
 		game_update()
 		game_render()
-
-def game_init():
-	return
 
 def game_update():
 	global move_index, current_state
@@ -73,55 +56,40 @@ def game_update():
 				if event.key == K_DOWN:
 					if move_index < 3: move_index += 1
 				if event.key == K_z:
-					playerAttack()
+					attack(bulbasaur, squirtle, move_index)
 			elif current_state == States.player_move:
 				if event.key == K_z:
 					current_state = States.enemy_move
+					attack(squirtle, bulbasaur, random.randint(0,3))
 			elif current_state == States.enemy_move:
 				if event.key == K_z:
-					enemyAttack()
+					current_state = States.move_select
 			else:							# Win or Lose state #
 				if event.key == K_z:
 					reset()
-	return False
 
-def playerAttack():
-	global current_state, msgbox_text, bulbasaur, squirtle
+def attack(attacker, defender, move_index):
+	global current_state, msgbox_text
 
-	if bulbasaur.moves[move_index].Type < 1:
-		msgbox_text = applyDebuff(bulbasaur.moves[move_index], squirtle)
+
+	if attacker.moves[move_index].Type < 1:
+		msgbox_text = applyDebuff(attacker.moves[move_index], defender)
 	else:
-		damage = calculateDamage(bulbasaur.moves[move_index], bulbasaur, squirtle)
-		squirtle.health -= damage
+		damage = calculateDamage(attacker.moves[move_index], attacker, defender)
+		defender.health -= damage
+
 		if damage == 0:
-			msgbox_text = bulbasaur.moves[move_index].Name + " missed!"
+			msgbox_text = attacker.moves[move_index].Name + " missed!"
 		else:
-			msgbox_text = bulbasaur.moves[move_index].Name + " hit for " + str(damage) + " damage!"
+			msgbox_text = attacker.moves[move_index].Name + " hit for " + str(damage) + " damage!"
 
-	if squirtle.health <= 0:
-		squirtle.health = 0
-		current_state = States.win
-	else: current_state = States.player_move
-
-def enemyAttack():
-	global current_state, msgbox_text, bulbasaur, squirtle
-
-	index = random.randint(0,3)
-	if squirtle.moves[index].Type < 1:
-		msgbox_text = applyDebuff(squirtle.moves[index], bulbasaur)
+	if defender.health <= 0:
+		defender.health = 0
+		if defender.name == 'Squirtle': current_state = States.win
+		elif defender.name == 'Bulbasaur': current_state = States.lose
 	else:
-		damage = calculateDamage(squirtle.moves[index], squirtle, bulbasaur)
-		bulbasaur.health -= damage
-		if damage == 0:
-			msgbox_text = squirtle.moves[index].Name + " missed!"
-		else:
-			msgbox_text = squirtle.moves[index].Name + " hit for " + str(damage) + " damage!"
-
-	if bulbasaur.health <= 0:
-		bulbasaur.health = 0
-		current_state = States.lose
-	else:
-		current_state = States.move_select
+		if defender.name == 'Squirtle': current_state = States.player_move
+		elif defender.name == 'Bulbasaur': current_state = States.enemy_move
 
 def reset():
 	global current_state, bulbasaur, squirtle
