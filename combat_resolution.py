@@ -4,6 +4,7 @@ import random, math, move, pokemon
 
 #class resolveAttack:
 def calculateDamage( attackMove, attackingPokemon, defendingPokemon):
+    attackMove.currentPP -= 1
     attackAccuracy = attackMove.accuracy * attackingPokemon.accMod #total accuracy of attack > 1 is a guaranteed hit 
         
     if attackMove.Type == move.NORMAL: #No bonus
@@ -36,7 +37,7 @@ def calculateDamage( attackMove, attackingPokemon, defendingPokemon):
         return 0 #miss
     
 def applyDebuff( debuffMove, defendingPokemon):
-        
+    debuffMove.currentPP -= 1
     if defendingPokemon.timesDebuffed < 6:
         defendingPokemon.timesDebuffed = defendingPokemon.timesDebuffed + 1
         defendingPokemon.attack * debuffMove.bonusAttack
